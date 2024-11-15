@@ -30,8 +30,6 @@ def main():
 
     # Input array
     input_data = np.array([[p1, p2, p3, p4, p5, p6]])
-    columns = ["age", "sex", "bmi", "children", "smoker", "region"]
-    input_data = pd.DataFrame(input_data, columns=columns)
 
     # Predict button
     if st.button("Predict"):
