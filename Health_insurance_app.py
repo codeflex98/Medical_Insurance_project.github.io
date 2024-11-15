@@ -20,7 +20,7 @@ def main():
     s2 = st.selectbox("Are you a smoker?", ("Yes", "No"))
     p5 = 1 if s2 == "Yes" else 0
     s6 = st.selectbox("Enter your region", ("Southwest", "Southeast", "Northwest", "Northeast"))
-    
+
     if s6 == "Southwest":
         p6 = 0
     elif s6 == "Southeast":
@@ -29,6 +29,13 @@ def main():
         p6 = 2
     else:  # "Northeast"
         p6 = 3
+
+     # Ensure input values are correctly typed
+    p1 = int(p1)
+    p3 = float(p3)
+    p4 = int(p4)
+    p5 = int(p5)
+    p6 = int(p6)
 
     # Input array converted to DataFrame
     input_data = np.array([[p1, p2, p3, p4, p5, p6]])
