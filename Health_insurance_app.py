@@ -2,6 +2,7 @@ import streamlit as st
 import joblib
 import numpy as np
 import os
+import pandas as pd
 
 model_path = os.path.join(os.path.dirname(__file__), 'health_insurance_model')
 model = joblib.load(model_path)
