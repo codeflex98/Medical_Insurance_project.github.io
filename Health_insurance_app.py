@@ -26,13 +26,16 @@ def main():
 
     input_data = input_data.astype(float)
     # Predict button
-    if st.button("Predict"):
-        try:
-            prediction = model.predict(input_data)
-            st.balloons() 
-            st.success(f"Your insurance cost is {round(prediction[0], 2)} US Dollars")
-        except Exception as e:
-            st.error(f"Error in prediction: {e}")
-
-if __name__ == '__main__':
-    main()
+   if st.button("Predict"):
+    try:
+        # Print input data for debugging
+        st.write("Input Data:")
+        st.write(input_data)
+        st.write("Data Types:")
+        st.write(input_data.dtypes)
+        
+        prediction = model.predict(input_data)
+        st.balloons()
+        st.success(f"Your insurance cost is {round(prediction[0], 2)} US Dollars")
+    except Exception as e:
+        st.error(f"Error in prediction: {e}")
