@@ -9,35 +9,48 @@ model = joblib.load(model_path)
 def main():
     st.title("Health Insurance Cost Prediction")
 
-    # Input fields
-    p1 = st.slider("Enter your age", 18, 100)
-    s1 = st.selectbox('Sex', ('Male', 'Female'))
-    p2 = 1 if s1 == 'Male' else 0
-    p3 = st.number_input("Enter your BMI (Body Mass Index) value")
-    p4 = st.slider("Enter number of children", 0, 5)
-    s2 = st.selectbox("Are you a smoker?", ("Yes", "No"))
-    p5 = 1 if s2 == "Yes" else 0
-    s6 = st.selectbox("Enter your region", ("Southwest", "Southeast", "Northwest", "Northeast"))
-    if s6 == "Southwest":
-        p6 = 0
-    elif s6 == "Southeast":
-        p6 = 1
-    elif s6 == "Northwest":
-        p6 = 2
+    # User input for age
+    age = st.slider("Enter your age", 18, 100)
+    
+    # User input for sex
+    sex = st.selectbox('Sex', ('Male', 'Female'))
+    if sex == 'Male':
+        sex_encoded = 1
     else:
-        p6 = 3
+        sex_encoded = 0
 
-    # Input array
-    input_data = np.array([[p1, p2, p3, p4, p5, p6]])
-
-    # Predict button
-    if st.button("Predict"):
-        try:
-            prediction = model.predict(input_data)
-            st.balloons() 
-            st.success(f"Your insurance cost is {round(prediction[0], 2)} US Dollars")
-        except Exception as e:
-            st.error(f"Error in prediction: {e}")
+    # User input for BMI
+    bmi = st.number_input("Enter your BMI (Body Mass Index) value", value=25.0, min_value=10.0, max_value=60.0)
+    
+    # User input for number of children
+    children = st.slider("Enter number of children", 0, 5)
+    
+    # User input for smoking status
+    smoker = st.selectbox("Are you a smoker?", ("Yes", "No"))
+    if smoker == "Yes":
+        smoker_encoded = 1
+    else:
+        smoker_encoded = 0
+    
+    # User input for region
+    region = st.selectbox("Enter your region", ("Southwest", "Southeast", "Northwest", "Northeast"))
+    if region == "Southwest":
+        region_encoded = 0
+    elif region == "Southeast":
+        region_encoded = 1
+    elif region == "Northwest":
+        region_encoded = 2
+    else:
+        region_encoded = 3
+    
+    # Prepare input data for the model
+    input_data = np.array([[age, sex_encoded, bmi, children, smoker_encoded, region_encoded]])
+    
+    # Predict using the loaded model
+    prediction = model.predict(input_data)
+    
+    # Display the prediction
+    st.success(f"The predicted insurance cost is: ${prediction[0]:.2f}")
 
 if __name__ == '__main__':
     main()
