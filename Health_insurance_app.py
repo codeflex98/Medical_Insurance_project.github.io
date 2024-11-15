@@ -4,7 +4,7 @@ import numpy as np
 import os
 
 # Correct model loading with appropriate path handling
-model_path = 'health_insurance_model.joblib'  # Adjust if needed with the correct extension
+model_path = 'health_insurance_model'  # Adjust if needed with the correct extension
 try:
     model = joblib.load(model_path)
 except Exception as e:
