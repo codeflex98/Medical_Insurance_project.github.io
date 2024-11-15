@@ -10,26 +10,19 @@ model = joblib.load(model_path)
 def main():
     st.title("Health Insurance Cost Prediction")
 
-    # Input fields
-    p1 = st.slider("Enter your age", 18, 100)
-    s1 = st.selectbox('Sex', ('Male', 'Female'))
-    p2 = 1 if s1 == 'Male' else 0
-    p3 = st.number_input("Enter your BMI (Body Mass Index) value")
-    p4 = st.slider("Enter number of children", 0, 5)
-    s2 = st.selectbox("Are you a smoker?", ("Yes", "No"))
-    p5 = 1 if s2 == "Yes" else 0
-    s6 = st.selectbox("Enter your region", ("Southwest", "Southeast", "Northwest", "Northeast"))
-    if s6 == "Southwest":
-        p6 = 0
-    elif s6 == "Southeast":
-        p6 = 1
-    elif s6 == "Northwest":
-        p6 = 2
-    else:
-        p6 = 3
+   age = st.slider("Enter your age", 18, 100)
+    sex = st.selectbox('Sex', ('Male', 'Female'))
+    sex_encoded = 1 if sex == 'Male' else 0
+    bmi = st.number_input("Enter your BMI (Body Mass Index) value")
+    children = st.slider("Enter number of children", 0, 5)
+    smoker = st.selectbox("Are you a smoker?", ("Yes", "No"))
+    smoker_encoded = 1 if smoker == "Yes" else 0
+    region = st.selectbox("Enter your region", ("Southwest", "Southeast", "Northwest", "Northeast"))
+    region_mapping = {"Southwest": 0, "Southeast": 1, "Northwest": 2, "Northeast": 3}
+    region_encoded = region_mapping[region]
 
-    # Input array
-    input_data = np.array([[p1, p2, p3, p4, p5, p6]])
+    # Creating a DataFrame for input data
+    input_data = pd.DataFrame({'age': [age], 'sex': [sex_encoded],'bmi': [bmi],'children': [children],'smoker': [smoker_encoded],'region': [region_encoded] })
 
     # Predict button
     if st.button("Predict"):
