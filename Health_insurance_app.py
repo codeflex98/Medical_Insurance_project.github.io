@@ -1,6 +1,7 @@
 import streamlit as st
 import joblib
 import numpy as np
+import pandas as pd
 import os
 
 model_path = os.path.join(os.path.dirname(__file__), 'health_insurance_model')
@@ -26,10 +27,15 @@ def main():
         p6 = 2
     else:
         p6 = 3
+        
+# Define column names as expected by the model
+   columns = ["age", "sex", "bmi", "children", "smoker", "region"]
 
-    # Input array
-    input_data = np.array([[p1, p2, p3, p4, p5, p6]])
+# Convert input data into a DataFrame
+input_df = pd.DataFrame(input_data, columns=columns)
 
+# Now, you can pass input_df to the model for prediction
+prediction = model.predict(input_df)
     # Predict button
     if st.button("Predict"):
         try:
