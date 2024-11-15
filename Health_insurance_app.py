@@ -3,16 +3,8 @@ import joblib
 import numpy as np
 import os
 
-# Specify model path
-model_path = 'health_insurance_model'  # No extension added
-
-# Load the model
-try:
-    model = joblib.load(model_path)
-except FileNotFoundError:
-    st.error(f"Model file not found at: {model_path}")
-except Exception as e:
-    st.error(f"Error loading model: {e}")
+model_path = os.path.join(os.path.dirname(__file__), 'health_insurance_model')
+model = joblib.load(model_path)
 
 def main():
     st.title("Health Insurance Cost Prediction")
