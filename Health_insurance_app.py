@@ -29,7 +29,7 @@ def main():
         p6 = 3
 
     # Input array
-    input_data = pd.DataFrame([[p1, p2, p3, p4, p5, p6]], columns=['p1', 'p2', 'p3', 'p4', 'p5', 'p6'])
+    input_data = pd.DataFrame([[p1, p2, p3, p4, p5, p6]])
 
     # Predict button
     if st.button("Predict"):
