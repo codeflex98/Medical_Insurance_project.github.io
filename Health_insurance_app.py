@@ -10,7 +10,7 @@ model = joblib.load(model_path)
 def main():
     st.title("Health Insurance Cost Prediction")
 
-   age = st.slider("Enter your age", 18, 100)
+    age = st.slider("Enter your age", 18, 100)
     sex = st.selectbox('Sex', ('Male', 'Female'))
     sex_encoded = 1 if sex == 'Male' else 0
     bmi = st.number_input("Enter your BMI (Body Mass Index) value")
