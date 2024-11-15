@@ -24,6 +24,7 @@ def main():
     # Creating a DataFrame for input data
     input_data = pd.DataFrame({'age': [age], 'sex': [sex_encoded],'bmi': [bmi],'children': [children],'smoker': [smoker_encoded],'region': [region_encoded] })
 
+    input_data = input_data.astype(float)
     # Predict button
     if st.button("Predict"):
         try:
