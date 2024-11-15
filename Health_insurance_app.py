@@ -4,7 +4,7 @@ import numpy as np
 import os
 
 model_path = os.path.join(os.path.dirname(__file__), 'health_insurance_model')
-model = joblib.load(model_path)
+model = joblib.load("D:/Hochschule Fresenius notes (sem3)/Artifical Intelligence and Machine Learning/Medical_Insurance/health_insurance_model")
 
 def main():
     st.title("Health Insurance Cost Prediction")
