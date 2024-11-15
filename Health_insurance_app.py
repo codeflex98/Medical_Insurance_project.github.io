@@ -26,7 +26,7 @@ def main():
 
     input_data = input_data.astype(float)
     # Predict button
-   if st.button("Predict"):
+    if st.button("Predict"):
     try:
         # Print input data for debugging
         st.write("Input Data:")
