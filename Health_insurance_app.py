@@ -17,12 +17,12 @@ def main():
     p4 = st.slider("Enter number of children", 0, 5)
     s2 = st.selectbox("Are you a smoker?", ("Yes", "No"))
     p5 = 1 if s2 == "Yes" else 0
-    s3 = st.selectbox("Enter your region", ("Southwest", "Southeast", "Northwest", "Northeast"))
-    if s3 == "Southwest":
+    s6 = st.selectbox("Enter your region", ("Southwest", "Southeast", "Northwest", "Northeast"))
+    if s6 == "Southwest":
         p6 = 0
-    elif s3 == "Southeast":
+    elif s6 == "Southeast":
         p6 = 1
-    elif s3 == "Northwest":
+    elif s6 == "Northwest":
         p6 = 2
     else:
         p6 = 3
