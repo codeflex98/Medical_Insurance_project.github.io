@@ -28,8 +28,7 @@ def main():
     else:
         p6 = 3
 
-    # Input array
-    input_data = np.array([[p1, p2, p3, p4, p5, p6]])
+    input_data = pd.DataFrame({ 'age': [p1],'sex': [p2],'bmi': [p3],'children': [p4],'smoker': [p5],'region': [p6] })
 
     # Predict button
     if st.button("Predict"):
