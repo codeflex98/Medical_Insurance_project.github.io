@@ -16,7 +16,7 @@ def main():
     
     sex_encoded = 1 if sex == 'Male' else 0
     
-    BMI = st.number_input("Enter your BMI (Body Mass Index) value")
+    bmi = st.number_input("Enter your BMI (Body Mass Index) value")
     
     children = st.slider("Enter number of children", 0, 5)
     smoker = st.selectbox("Are you a smoker?", ("Yes", "No"))
@@ -33,7 +33,7 @@ def main():
     else:
         region_encoded = 3
 
-    input_data = pd.DataFrame([["age","sex_encoded","BMI","children","smoker_encoded","region_encoded","charges"]])
+    input_data = pd.DataFrame([["age","sex_encoded","bmi","children","smoker_encoded","region_encoded","charges"]])
 
     # Predict button
     if st.button("Predict"):
