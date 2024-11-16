@@ -28,7 +28,14 @@ def main():
     else:
         p6 = 3
 
-    input_data = pd.DataFrame({ 'age': [p1],'sex': [p2],'bmi': [p3],'children': [p4],'smoker': [p5],'region': [p6] })
+    input_data = pd.DataFrame({
+        'age': [int(p1)],
+        'sex': [int(p2)],
+        'bmi': [float(p3)],
+        'children': [int(p4)],
+        'smoker': [int(p5)],
+        'region': [int(p6)]
+    })
 
     # Predict button
     if st.button("Predict"):
