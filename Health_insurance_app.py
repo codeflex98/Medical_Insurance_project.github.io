@@ -11,33 +11,30 @@ def main():
     st.title("Health Insurance Cost Prediction")
 
     # Input fields
-    age = st.slider("Enter your age", 18, 100)
-    sex = st.selectbox('Sex', ('Male', 'Female'))
-    
-    sex_encoded = 1 if sex == 'Male' else 0
-    
-    bmi = st.number_input("Enter your BMI (Body Mass Index) value")
-    
-    children = st.slider("Enter number of children", 0, 5)
-    smoker = st.selectbox("Are you a smoker?", ("Yes", "No"))
-    
-    smoker_encoded = 1 if smoker == "Yes" else 0
-    
-    region = st.selectbox("Enter your region", ("Southwest", "Southeast", "Northwest", "Northeast"))
-    if region == "Southwest":
-        region_encoded = 0
-    elif region == "Southeast":
-        region_encoded = 1
-    elif region == "Northwest":
-        region_encoded = 2
+    p1 = st.slider("Enter your age", 18, 100)
+    s1 = st.selectbox('Sex', ('Male', 'Female'))
+    p2 = 1 if s1 == 'Male' else 0
+    p3 = st.number_input("Enter your BMI (Body Mass Index) value")
+    p4 = st.slider("Enter number of children", 0, 5)
+    s2 = st.selectbox("Are you a smoker?", ("Yes", "No"))
+    p5 = 1 if s2 == "Yes" else 0
+    s6 = st.selectbox("Enter your region", ("Southwest", "Southeast", "Northwest", "Northeast"))
+    if s6 == "Southwest":
+        p6 = 0
+    elif s6 == "Southeast":
+        p6 = 1
+    elif s6 == "Northwest":
+        p6 = 2
     else:
-        region_encoded = 3
+        p6 = 3
 
-    input_data = pd.DataFrame({'age': [age],'sex': [sex_encoded],'bmi': [bmi],'children': [children],'smoker': [smoker_encoded],'region': [region_encoded] })
+    # Input array
+    input_data_array = np.array([[p1, p2, p3, p4, p5, p6]])
 
     # Predict button
     if st.button("Predict"):
         try:
+            input_data = input_data_array.values
             prediction = model.predict(input_data)
             st.balloons() 
             st.success(f"Your insurance cost is {round(prediction[0], 2)} US Dollars")
