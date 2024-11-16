@@ -29,12 +29,12 @@ def main():
         p6 = 3
 
     # Input array
-    input_data_array = np.array([[p1, p2, p3, p4, p5, p6]])
+    input_data = np.array([[p1, p2, p3, p4, p5, p6]])
 
     # Predict button
     if st.button("Predict"):
         try:
-            input_data = input_data_array.values
+            input_data = input_data.values
             prediction = model.predict(input_data)
             st.balloons() 
             st.success(f"Your insurance cost is {round(prediction[0], 2)} US Dollars")
