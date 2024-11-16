@@ -29,11 +29,12 @@ def main():
         p6 = 3
 
     # Input array
-    input_data = pd.DataFrame([[p1, p2, p3, p4, p5, p6]])
+   
 
     # Predict button
     if st.button("Predict"):
         try:
+            input_data = pd.DataFrame([[p1, p2, p3, p4, p5, p6]])
             input_data = input_data.values
             prediction = model.predict(input_data)
             st.balloons() 
