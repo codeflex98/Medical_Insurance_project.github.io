@@ -33,7 +33,14 @@ def main():
     else:
         region_encoded = 3
 
-    input_data = pd.DataFrame([["age","sex_encoded","bmi","children","smoker_encoded","region_encoded","charges"]])
+   input_data = pd.DataFrame({
+        'age': [age],
+        'sex': [sex_encoded],
+        'bmi': [bmi],
+        'children': [children],
+        'smoker': [smoker_encoded],
+        'region': [region_encoded]
+    })
 
     # Predict button
     if st.button("Predict"):
