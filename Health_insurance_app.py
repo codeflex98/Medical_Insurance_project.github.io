@@ -12,21 +12,13 @@ def main():
 
     # Input fields
     p1 = st.slider("Enter your age", 18, 100)
-    s1 = st.selectbox('Sex', ('Male', 'Female'))
+    s1 = st.selectbox('Sex', 0, 1))
     p2 = 1 if s1 == 'Male' else 0
     p3 = st.number_input("Enter your BMI (Body Mass Index) value")
     p4 = st.slider("Enter number of children", 0, 5)
-    s2 = st.selectbox("Are you a smoker?", ("Yes", "No"))
+    s2 = st.selectbox("Are you a smoker?", 0, 1)
     p5 = 1 if s2 == "Yes" else 0
-    s6 = st.selectbox("Enter your region", ("Southwest", "Southeast", "Northwest", "Northeast"))
-    if s6 == "Southwest":
-        p6 = 0
-    elif s6 == "Southeast":
-        p6 = 1
-    elif s6 == "Northwest":
-        p6 = 2
-    else:
-        p6 = 3
+    s6 = st.selectbox("Enter your region", 0, 1, 2, 3)
     
     print(f"Inputs: {p1}, {p2}, {p3}, {p4}, {p5}, {p6}")
     input_data = np.array([[p1, p2, p3, p4, p5, p6]])
