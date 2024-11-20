@@ -38,7 +38,7 @@ def main():
 
         if st.button("Predict Insurance Cost"):
             # Make a prediction
-            prediction = model.predict(input_features)
+            prediction = model.predict(input_data)
             st.success(f"Predicted Health Insurance Cost: ${round(prediction[0], 2)}")
     except Exception as e:
         st.error(f"Error loading the model: {e}")
