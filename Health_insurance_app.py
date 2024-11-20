@@ -4,8 +4,8 @@ import numpy as np
 import os
 import pandas as pd
 
-model_path = os.path.join(os.path.dirname(__file__), 'health_insurance_model')
-model = joblib.load(model_path)
+# model_path = os.path.join(os.path.dirname(__file__), 'health_insurance_model')
+# model = joblib.load(model_path)
 
 import streamlit as st
 import joblib  # Ensure you have joblib for loading models
@@ -31,12 +31,19 @@ def main():
 
     input_features = np.array([[age, sex_binary, bmi, children, smoker_binary, region_value]])
 
-    if st.button("Predict Insurance Cost"):
-        prediction = model.predict(input_features)
-        st.success(f"Predicted Health Insurance Cost: ${round(prediction[0], 2)}")
+    # Load the model
+    model_path = 'health_insurance_model'  # Replace with your actual model path
+    try:
+        model = joblib.load(model_path)
+
+        if st.button("Predict Insurance Cost"):
+            # Make a prediction
+            prediction = model.predict(input_features)
+            st.success(f"Predicted Health Insurance Cost: ${round(prediction[0], 2)}")
     except Exception as e:
         st.error(f"Error loading the model: {e}")
 
 if __name__ == "__main__":
     main()
+
 
