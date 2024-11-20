@@ -12,7 +12,7 @@ def main():
 
     # Input fields
     p1 = st.slider("Enter your age", 18, 100)
-    s1 = st.selectbox('Sex', 0, 1))
+    s1 = st.selectbox('Sex', 0, 1)
     p2 = 1 if s1 == 'Male' else 0
     p3 = st.number_input("Enter your BMI (Body Mass Index) value")
     p4 = st.slider("Enter number of children", 0, 5)
