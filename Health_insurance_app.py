@@ -29,7 +29,7 @@ def main():
     region_encoded = {"northwest": 0, "northeast": 1, "southwest": 2, "southeast": 3}
     region_value = region_encoded[region]
 
-    input_features = np.array([[age, sex_binary, bmi, children, smoker_binary, region_value]])
+    input_data = pd.DataFrame({'age': [age],'sex': [sex_binary],'bmi': [bmi],'children': [children],'smoker': [smoker_binary],'region': [region_value]})
 
     # Load the model
     model_path = 'health_insurance_model'  # Replace with your actual model path
