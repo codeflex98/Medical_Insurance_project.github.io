@@ -17,7 +17,6 @@ def main():
     p3 = st.number_input("Enter your BMI (Body Mass Index) value")
     p4 = st.slider("Enter number of children", 0, 5)
     s2 = st.selectbox("Are you a smoker?", 1, 0)
-    p5 = 1 if s2 == "Yes" else 0
     s6 = st.selectbox("Enter your region", 0, 1, 2, 3)
     
     print(f"Inputs: {p1}, {p2}, {p3}, {p4}, {p5}, {p6}")
