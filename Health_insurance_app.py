@@ -7,30 +7,36 @@ import pandas as pd
 model_path = os.path.join(os.path.dirname(__file__), 'health_insurance_model')
 model = joblib.load(model_path)
 
+import streamlit as st
+import joblib  # Ensure you have joblib for loading models
+import numpy as np
+
 def main():
+    # Title of the Streamlit app
     st.title("Health Insurance Cost Prediction")
 
-    # Input fields
-    p1 = st.slider("Enter your age", 18, 100)
-    s1 = st.selectbox('Sex', 1, 0)
-    p2 = 1 if s1 == 'Male' else 0
-    p3 = st.number_input("Enter your BMI (Body Mass Index) value")
-    p4 = st.slider("Enter number of children", 0, 5)
-    s2 = st.selectbox("Are you a smoker?", 1, 0)
-    s6 = st.selectbox("Enter your region", 0, 1, 2, 3)
-    
-    print(f"Inputs: {p1}, {p2}, {p3}, {p4}, {p5}, {p6}")
-    input_data = np.array([[p1, p2, p3, p4, p5, p6]])
-    print(f"Input data shape: {input_data.shape}")
+    # User Inputs
+    age = st.number_input("Age", min_value=0, max_value=120, step=1)
+    sex = st.selectbox("Sex", ["male", "female"])
+    bmi = st.number_input("BMI (Body Mass Index)", min_value=0.0, max_value=70.0, step=0.1)
+    children = st.number_input("Number of Children", min_value=0, max_value=10, step=1)
+    smoker = st.selectbox("Smoker Status", ["yes", "no"])
+    region = st.selectbox("Region", ["northwest", "northeast", "southwest", "southeast"])
 
-    # Predict button
-    if st.button("Predict"):
-        try:
-            prediction = model.predict(input_data)
-            st.balloons() 
-            st.success(f"Your insurance cost is {round(prediction[0], 2)} US Dollars")
-        except Exception as e:
-            st.error(f"Error in prediction: {e}")
+    # Preprocessing inputs for prediction
+    sex_binary = 1 if sex == "male" else 0
+    smoker_binary = 1 if smoker == "yes" else 0
+    region_encoded = {"northwest": 0, "northeast": 1, "southwest": 2, "southeast": 3}
+    region_value = region_encoded[region]
 
-if __name__ == '__main__':
+    input_features = np.array([[age, sex_binary, bmi, children, smoker_binary, region_value]])
+
+    if st.button("Predict Insurance Cost"):
+        prediction = model.predict(input_features)
+        st.success(f"Predicted Health Insurance Cost: ${round(prediction[0], 2)}")
+    except Exception as e:
+        st.error(f"Error loading the model: {e}")
+
+if __name__ == "__main__":
     main()
+
